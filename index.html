@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Somashekhar Pokala | Senior Flutter Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #07090E;
+    --bg-card: #10141D;
+    --bg-glass: rgba(7, 9, 14, 0.85);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --accent: #38BDF8; /* Flutter Blue */
+    --accent-hover: #0EA5E9;
+    --accent-glow: rgba(56, 189, 248, 0.15);
+    --radius: 16px;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .container { max-width: 1100px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
+  a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
+  
+  /* Navbar */
+  header {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: var(--bg-glass); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+  }
+  nav { display: flex; justify-content: space-between; align-items: center; height: 75px; }
+  .logo { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.5rem; font-size: 0.95rem; font-weight: 600; }
+  .nav-links a:hover { color: var(--accent); }
+  
+  /* Hero Section */
+  .hero { padding-top: 120px; padding-bottom: 50px; position: relative; }
+  .hero::before {
+    content: ''; position: absolute; top: -10%; left: -10%; width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); z-index: -1;
+  }
+  .eyebrow { color: var(--accent); font-size: 0.95rem; font-weight: 600; margin-bottom: 1.5rem; display: inline-block; padding: 6px 16px; background: rgba(56,189,248,0.1); border-radius: 50px; border: 1px solid rgba(56,189,248,0.2); }
+  .hero h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
+  .hero p.lead { color: var(--text-secondary); font-size: 1.15rem; max-width: 800px; margin-bottom: 2rem; }
+  
+  /* Philosophy Quote */
+  .quote-box {
+    border-left: 3px solid var(--accent); padding-left: 1.5rem; margin-bottom: 2.5rem; max-width: 800px;
+  }
+  .quote-box p { font-size: 1.05rem; font-style: italic; color: #CBD5E1; margin-bottom: 0.5rem; }
+  .quote-box span { font-size: 0.9rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Hero Contact & Buttons */
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; margin-bottom: 3rem; }
+  .btn-primary { background: var(--accent); color: #000; font-weight: 800; padding: 14px 32px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 0 20px var(--accent-glow); transform: translateY(-2px); }
+  
+  .hero-contact-links { display: flex; gap: 1rem; font-size: 0.95rem; color: var(--text-secondary); font-weight: 500; align-items: center; }
+  .hero-contact-links a { display: flex; align-items: center; gap: 1rem; }
+  .hero-contact-links a:hover { color: var(--text-primary); }
+  .hero-contact-links a:not(:last-child)::after { content: '•'; color: var(--border-color); pointer-events: none; }
+  
+  /* Tech Stack Grid */
+  .tech-wrapper { margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 2rem; }
+  .tech-wrapper h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 1.5rem; }
+  .tech-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .tech-pill { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 8px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: 500; color: #E2E8F0; transition: all 0.2s; }
+  .tech-pill:hover { border-color: var(--accent); background: rgba(56,189,248,0.05); }
+
+  /* Sections - Set precisely to 50px top/bottom */
+  section { padding-top: 50px; padding-bottom: 50px; }
+  
+  .sec-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; }
+  .sec-num { 
+    font-family: 'JetBrains Mono', monospace; 
+    color: var(--accent); 
+    font-size: 1.3rem; 
+    font-weight: 600; 
+    background: rgba(56, 189, 248, 0.1); 
+    border: 1px solid rgba(56, 189, 248, 0.2); 
+    padding: 4px 12px; 
+    border-radius: 8px; 
+  }
+
+  /* Featured Work (Cards) */
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+  .card { 
+    background: var(--bg-card); border: 1px solid var(--border-color); padding: 2.5rem; 
+    border-radius: var(--radius); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative; overflow: hidden;
+  }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: transparent; transition: background 0.3s; }
+  .card:hover { transform: translateY(-8px); border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+  .card:hover::before { background: var(--accent); }
+  .card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: #fff; }
+  .card p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.7; }
+  
+  /* Experience Timeline */
+  .timeline { max-width: 800px; margin-left: 10px; }
+  .timeline-item { 
+    border-left: 2px solid var(--border-color); 
+    padding-left: 2.5rem; 
+    padding-bottom: 3.5rem; 
+    position: relative; 
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before { content: ''; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent-glow); }
+  .timeline-item h3 { font-size: 1.4rem; margin-bottom: 0.3rem; color: #fff; line-height: 1.3; }
+  .time-span { font-family: 'JetBrains Mono'; color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem; margin-top: 0.5rem; display: inline-block; background: rgba(56,189,248,0.1); padding: 4px 12px; border-radius: 4px; }
+  .timeline-item p { color: var(--text-secondary); font-size: 1.05rem; }
+  
+  /* Beyond the Code */
+  .hobbies-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; max-width: 800px; }
+  .hobby-item { background: var(--bg-card); border: 1px solid var(--border-color); padding: 1.5rem 2rem; border-radius: var(--radius); display: flex; gap: 1.5rem; align-items: flex-start; }
+  .hobby-icon { font-size: 2.2rem; line-height: 1; } 
+  .hobby-content h4 { font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem; }
+  .hobby-content p { color: var(--text-secondary); font-size: 0.95rem; }
+
+  /* Footer / CTA */
+  .cta { text-align: center; padding: 60px 0 50px; background: linear-gradient(to top, rgba(56,189,248,0.05), transparent); border-top: 1px solid var(--border-color); border-radius: 40px 40px 0 0; margin-top: 30px; }
+  .cta h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+  .cta-contact-grid { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+  .contact-pill { background: var(--bg-card); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 50px; font-weight: 500; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
+  .contact-pill:hover { border-color: var(--accent); color: var(--accent); }
+  
+  footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.9rem; border-top: 1px solid var(--border-color); }
+
+  /* Responsive Fixes */
+  @media (max-width: 768px) { 
+    .nav-links { display: none; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    
+    .hero-contact-links { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+    .hero-contact-links a:not(:last-child)::after { content: none; } 
+    
+    .sec-title { flex-direction: column; align-items: flex-start; font-size: 1.8rem; gap: 0.8rem; }
+    .sec-num { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <div class="logo">Somashekhar&nbsp;&nbsp;Pokala</div>
+    <div class="nav-links">
+      <a href="#work">Engineering Impact</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">Beyond the Code</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO SECTION -->
+  <section class="hero container">
+    <span class="eyebrow mono">Senior Mobile Platform Engineer</span>
+    <h1>Building the layer between what users tap and what actually happens.</h1>
+    
+    <p class="lead">With over 7 years of engineering experience, I specialize in architecting enterprise-scale, white-label Flutter platforms and massive multi-tenant application building. I build robust cross-platform solutions that power 1,500+ customer brands, scaling seamlessly from 10 to over 300,000+ monthly active users.</p>
+    
+    <div class="quote-box">
+      <p>"The best way to handle a complex project isn't just working hard, but working smart to find the most efficient path forward."</p>
+      <span>— My Engineering Philosophy</span>
+      <p style="margin-top: 10px; font-style: normal; font-size: 1rem;">I am a fast learner and highly adaptable to new tech landscapes. I believe in smart work over just hard work—optimizing processes, building reusable architectures, and finding the most efficient, elegant solutions to complex scale problems.</p>
+    </div>
+    
+    <div class="hero-actions">
+      <a href="soma_shekhar_pokala_resume.pdf" class="btn-primary" download>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Download Profile (PDF)
+      </a>
+      
+      <div class="hero-contact-links mono">
+        <a href="mailto:Somashekharpokala@gmail.com">Somashekharpokala@gmail.com</a>
+        <a href="tel:+917382075273">+91-7382075273</a>
+        <a href="https://linkedin.com/in/SomaShekhar-Pokala-309a27151" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+    
+    <div class="tech-wrapper">
+      <h4>Complete Technical Arsenal</h4>
+      <div class="tech-grid">
+        <span class="tech-pill">Flutter & Dart</span>
+        <span class="tech-pill">Cross-Platform Mobile Applications</span>
+        <span class="tech-pill">Android (Java/Kotlin)</span>
+        <span class="tech-pill">iOS Deployment</span>
+        <span class="tech-pill">App Store & Play Store Release Management</span>
+        <span class="tech-pill">AI-Assisted Development (Claude, Cursor, Co-pilot)</span>
+        <span class="tech-pill">Production Support & Governance</span>
+        <span class="tech-pill">MVVM Architecture</span>
+        <span class="tech-pill">Provider & Bloc State Management</span>
+        <span class="tech-pill">Firebase (Analytics, Crashlytics, FCM)</span>
+        <span class="tech-pill">CI/CD (Jenkins, Fastlane)</span>
+        <span class="tech-pill">C#/.NET APIs</span>
+        <span class="tech-pill">Unit, Widget & E2E Testing</span>
+        <span class="tech-pill">Git & Agile Product Development</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINEERING IMPACT -->
+  <section id="work" class="container">
+    <h2 class="sec-title"><span class="sec-num">01</span> Highlighted Projects & Impact</h2>
+    <div class="work-grid">
+      
+      <div class="card">
+        <h3>🚀 AI-Accelerated App Rebuild</h3>
+        <p>Led a 4-person team to completely rebuild the next-generation Consumer Mobile Application in just 2 months. Codified architecture rules and leveraged Claude for AI-assisted development, backed by automated testing as reliability guardrails.</p>
+      </div>
+
+      <div class="card">
+        <h3>🔐 Azure Key Vault Migration</h3>
+        <p>Identified hardcoded credentials within E2E test codebases. Proactively designed and implemented a secure migration to Azure Key Vault, establishing it as the new standard across the engineering team's testing pipeline.</p>
+      </div>
+
+      <div class="card">
+        <h3>📊 Multi-Tenant Analytics</h3>
+        <p>Engineered an internal analytics wrapper routing events seamlessly across Firebase, Mixpanel, and an internal DB. Implemented intelligent batching and dynamic per-customer Firebase project switching to support massive white-label multi-tenancy.</p>
+      </div>
+
+      <div class="card">
+        <h3>⚙️ Platform Delivery at Scale</h3>
+        <p>Maintained continuous feature delivery during major team transitions, managing 3-4 annual production releases and hotfixes via Jenkins and Fastlane. Developed lightweight C#/.NET internal APIs to support seamless mobile app workflows.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="container">
+    <h2 class="sec-title"><span class="sec-num">02</span> Professional Journey</h2>
+    <div class="timeline">
+      
+      <div class="timeline-item">
+        <h3>Senior Mobile Application Developer (Flutter) | Zenoti</h3>
+        <span class="time-span">Sep 2022 — Jun 2026</span>
+        <p>Owned the Consumer Mobile Platform end-to-end. Engineered the white-label architecture allowing businesses to launch custom iOS and Android apps from a shared Flutter codebase. Mentored developers, governed release pipelines, and drove performance optimization.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <h3>Flutter Application Developer | Zenoti</h3>
+        <span class="time-span">Sep 2020 — Sep 2022</span>
+        <p>Played a core role in migrating the legacy native Android platform to a modern, shared cross-platform Flutter codebase. Adopted Provider and Bloc state management to build modular, highly scalable components.</p>
+      </div>
+      
+      <div class="timeline-item">
+        <h3>Android Developer | Zenoti</h3>
+        <span class="time-span">May 2019 — Sep 2020</span>
+        <p>Developed and maintained robust native Android applications utilizing Java and Kotlin. Supported early-stage white-label mobile application development prior to the strategic Flutter migration.</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- BEYOND THE CODE (Hobbies) -->
+  <section id="about" class="container">
+    <h2 class="sec-title"><span class="sec-num">03</span> Beyond the Code</h2>
+    
+    <div class="hobbies-grid">
+      <div class="hobby-item">
+        <div class="hobby-icon">🏸</div>
+        <div class="hobby-content">
+          <h4>Sports & Recreation</h4>
+          <p>Whether I'm smashing a shuttlecock in Badminton or strategizing on the Cricket field, I stay active with sports that keep my reflexes sharp, my mind clear, and my competitive spirit alive.</p>
+        </div>
+      </div>
+
+      <div class="hobby-item">
+        <div class="hobby-icon">🎬</div>
+        <div class="hobby-content">
+          <h4>Entertainment & Culture</h4>
+          <p>A massive cinephile and audiophile. I am proudly a <strong>"TFI kattu banisa"</strong> (a die-hard devotee of the Telugu Film Industry). Exploring movies and music is my ultimate way to unwind and find creative inspiration.</p>
+        </div>
+      </div>
+
+      <div class="hobby-item">
+        <div class="hobby-icon">🤝</div>
+        <div class="hobby-content">
+          <h4>Core Priorities</h4>
+          <p>Beyond technology and entertainment, my greatest recharge comes from simply spending quality, unplugged time with my close friends and family.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>Let's build something scalable.</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem;">I am always open to discussing Senior / Lead Engineering roles, complex architecture challenges, and new opportunities.</p>
+      
+      <div class="cta-contact-grid mono">
+        <a href="mailto:Somashekharpokala@gmail.com" class="contact-pill">
+          📧 Somashekharpokala@gmail.com
+        </a>
+        <a href="tel:+917382075273" class="contact-pill">
+          📱 +91-7382075273
+        </a>
+        <a href="https://linkedin.com/in/somashekhar-pokala-309a27151" target="_blank" class="contact-pill">
+          💼 Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container mono">
+    &copy; 2026 Somashekhar Pokala. Engineered with precision.
+  </div>
+</footer>
+
+</body>
+</html>
